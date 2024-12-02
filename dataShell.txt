@@ -1,0 +1,60 @@
+python manage.py shell
+
+from django.contrib.auth.models import Permission
+from auth_app.models import CustomUser, Car
+
+# Crear un usuario estándar con permisos específicos
+user = CustomUser.objects.create_user(username='john_doe', email='john@example.com', password='password123')
+permission = Permission.objects.get(codename='edit_car')
+user.user_permissions.add(permission)
+user.save()
+print(f'Usuario creado: {user.username} con permisos {user.user_permissions.all()}')
+
+# Crear un superusuario
+superuser = CustomUser.objects.create_superuser(username='admin', email='admin@example.com', password='adminpassword')
+print(f'Superusuario creado: {superuser.username}')
+
+# Crear objetos de tipo Car
+car1 = Car.objects.create(model='Toyota Corolla', year=2020)
+car2 = Car.objects.create(model='Honda Civic', year=2019)
+car3 = Car.objects.create(model='Ford Mustang', year=2021)
+print(f'Autos creados: {Car.objects.all()}')
+
+# Verificar los usuarios creados
+print('Usuarios:')
+for user in CustomUser.objects.all():
+    print(f'Usuario: {user.username}, Email: {user.email}, Permisos: {user.user_permissions.all()}')
+
+# Verificar los autos creados
+print('Autos:')
+for car in Car.objects.all():
+    print(f'Modelo: {car.model}, Año: {car.year}')
+
+from django.contrib.auth.models import Permission
+from auth_app.models import CustomUser, Car
+
+# Crear un usuario estándar con permisos específicos
+user = CustomUser.objects.create_user(username='john_doe', email='john@example.com', password='password123')
+permission = Permission.objects.get(codename='edit_car')
+user.user_permissions.add(permission)
+user.save()
+print(f'Usuario creado: {user.username} con permisos {user.user_permissions.all()}')
+
+# Crear un superusuario
+superuser = CustomUser.objects.create_superuser(username='admin', email='admin@example.com', password='adminpassword')
+print(f'Superusuario creado: {superuser.username}')
+
+# Crear objetos de tipo Car
+car1 = Car.objects.create(model='Toyota Corolla', year=2020)
+car2 = Car.objects.create(model='Honda Civic', year=2019)
+car3 = Car.objects.create(model='Ford Mustang', year=2021)
+print(f'Autos creados: {Car.objects.all()}')
+
+# Verificar los datos creados
+print('Usuarios:')
+for user in CustomUser.objects.all():
+    print(f'Usuario: {user.username}, Email: {user.email}, Permisos: {user.user_permissions.all()}')
+
+print('Autos:')
+for car in Car.objects.all():
+    print(f'Modelo: {car.model}, Año: {car.year}')
